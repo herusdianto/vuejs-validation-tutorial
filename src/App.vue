@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Form</h3>
+        </div>
+        <div class="panel-body">
+          <form @submit.prevent="submit()" novalidate>
+            <div class="form-group" :class="{ 'has-error': errors.has('email') }">
+              <label class="control-label" for="email">Email address</label>
+              <input name="email" type="email" class="form-control" id="email" placeholder="Email" v-validate data-rules="required|email">
+              <span v-show="errors.has('email')" class="help-block">
+                {{ errors.first('email') }}
+              </span>
+            </div>
+
+            <div class="form-group" :class="{ 'has-error': errors.has('password') }">
+              <label class="control-label" for="password">Password</label>
+              <input name="password" type="password" class="form-control" id="password" placeholder="Password" v-validate data-rules="required|min:6">
+              <span v-show="errors.has('password')" class="help-block" v-for="error in errors.collect('password')">
+                {{ error }}
+              </span>
+            </div>
+
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
-
 export default {
   name: 'app',
-  components: {
-    Hello
+  methods: {
+    submit() {
+      alert('Submitted')
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.panel {
+  margin-top: 2em;
 }
 </style>
