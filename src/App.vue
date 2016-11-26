@@ -23,6 +23,14 @@
               </span>
             </div>
 
+            <div class="form-group" :class="{ 'has-error': errors.has('age') }">
+              <label class="control-label" for="age">Age</label>
+              <input name="age" type="number" class="form-control" id="age" placeholder="Age" v-validate data-rules="required|age:10">
+              <span v-show="errors.has('age')" class="help-block">
+                {{ errors.first('age') }}
+              </span>
+            </div>
+
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
         </div>
