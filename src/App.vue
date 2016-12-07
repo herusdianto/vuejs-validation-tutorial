@@ -44,7 +44,16 @@ export default {
   name: 'app',
   methods: {
     submit() {
-      alert('Submitted')
+      if(!this.validate()) {
+        alert('Submitted')
+      } else {
+        alert('Not Submitted')
+      }
+    },
+    validate() {
+      this.$validator.validateAll();
+
+      return this.errors.any();
     }
   }
 }
