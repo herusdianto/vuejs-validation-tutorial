@@ -51,9 +51,9 @@ export default {
       }
     },
     validate() {
-      this.$validator.validateAll();
+      this.$validator.validateAll()
 
-      return this.errors.any();
+      return this.errors.any()
     }
   }
 }
